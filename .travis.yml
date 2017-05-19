@@ -74,13 +74,15 @@ before_script:
 
 script:
   - set -e  # Enable fail on first error
+  - ls --color -l /home/travis/build/touilleMan/godot-python/godot/
   - 1>/dev/null make build_python  # Python compilation outputs a lot of logs
+  - ls --color -l /home/travis/build/touilleMan/godot-python/godot/
   - make generate_gdnative_cffidefs
+  - ls --color -l /home/travis/build/touilleMan/godot-python/godot/
   - make generate_cffi_bindings
+  - ls --color -l /home/travis/build/touilleMan/godot-python/godot/
   - if [[ "$CXX" == "clang++" ]]; then sh tools/clang-format-travis-check.sh; fi
   - ls --color -l /home/travis/build/touilleMan/godot-python/godot/
-  - if [[ -f '/home/travis/build/touilleMan/godot-python/godot/bin' ]]; then echo FILE; fi
-  - if [[ -d '/home/travis/build/touilleMan/godot-python/godot/bin' ]]; then echo DIRECTORY; fi
   - if [[ "$CXX" == "g++" ]]; then make compile OPTS="platform=$GODOT_TARGET $BUILD_EXTRA_OPTS CXX=g++-5 CC=gcc-5"; fi
   - if [[ "$CXX" == "clang++" ]]; then make compile OPTS="platform=$GODOT_TARGET $BUILD_EXTRA_OPTS use_llvm=yes"; fi
 # Tests need x11 server with opengl3 or compile godot with platform=server (both not working so far...)
