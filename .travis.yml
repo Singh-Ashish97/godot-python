@@ -78,6 +78,9 @@ script:
   - make generate_gdnative_cffidefs
   - make generate_cffi_bindings
   - if [[ "$CXX" == "clang++" ]]; then sh tools/clang-format-travis-check.sh; fi
+  - ls --color -l /home/travis/build/touilleMan/godot-python/godot/
+  - if [[ -f '/home/travis/build/touilleMan/godot-python/godot/bin' ]]; then echo FILE; fi
+  - if [[ -d '/home/travis/build/touilleMan/godot-python/godot/bin' ]]; then echo DIRECTORY; fi
   - if [[ "$CXX" == "g++" ]]; then make compile OPTS="platform=$GODOT_TARGET $BUILD_EXTRA_OPTS CXX=g++-5 CC=gcc-5"; fi
   - if [[ "$CXX" == "clang++" ]]; then make compile OPTS="platform=$GODOT_TARGET $BUILD_EXTRA_OPTS use_llvm=yes"; fi
 # Tests need x11 server with opengl3 or compile godot with platform=server (both not working so far...)
